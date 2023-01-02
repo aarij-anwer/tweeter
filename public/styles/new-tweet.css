@@ -1,0 +1,22 @@
+.new-tweet {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+div {
+  display: flex;
+  justify-content: space-between;
+}
+
+textarea {
+    background-color: #f4f1ec;
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: black;
+    height: 36px;
+}
