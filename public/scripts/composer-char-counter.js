@@ -1,20 +1,19 @@
 
 $(document).ready(function() {
   // --- our code goes here ---
-  let counter = 140;
 
   $('#tweet-text').on('input', function(event) {
-    let amountTyped = this.value.length;
-    counter = 140 - amountTyped;
+    const amountTyped = $(this).val().length;
+    let counter = 140 - amountTyped;
 
-    const form = event.originalEvent.path[1];
-    let counterElement = form[2];
+    const form = $(this).parent();
+    const counterElement = form.find('.counter');
 
-    counterElement.value = counter;
+    counterElement.text(counter);
     if (counter < 0) {
-      counterElement.id = 'red';
+      counterElement.css('color','red');
     } else {
-      counterElement.id = 'black';
+      counterElement.css('color','black');
     }
   });
 });
