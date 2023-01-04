@@ -1,7 +1,7 @@
-let counter = 140;
 
 $(document).ready(function() {
   // --- our code goes here ---
+  let counter = 140;
 
   $('#tweet-text').on('input', function(event) {
     let amountTyped = this.value.length;
