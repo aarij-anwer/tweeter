@@ -27,9 +27,66 @@ body {
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
 
- main {
+main {
   display: flex;
   flex-direction: column;
   width: 90%;
   align-self: center;
- }
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  border: black;
+  border-style: solid;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  padding: 1%;
+}
+
+article:hover {
+  box-shadow: 5px 10px #545149;
+}
+
+main > article > header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+main > article > header > div {
+  width: 150px;
+}
+
+hr {
+  border: none;
+  height: 4px;
+  background: black;
+}
+
+div {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer {
+  font-size: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1%;
+  padding-left: 1%;
+}
+
+footer > div {
+  width: 80px;
+}
+
+p.handle {
+  font-family: 'Source Sans Pro';
+  font-weight: 300;
+}
+
+i:hover {
+  color:darksalmon;
+}

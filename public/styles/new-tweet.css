@@ -8,10 +8,10 @@ form {
   flex-direction: column;
 }
 
-div {
-  display: flex;
-  justify-content: space-between;
+form > div {
+  padding-top: 10px;
 }
+
 
 textarea {
     background-color: #f4f1ec;
@@ -19,12 +19,4 @@ textarea {
     border-width: 0 0 2px;
     border-color: black;
     height: 36px;
-}
-
-.counter#red {
-  color: red;
-}
-
-.counter#black {
-  color: black;
 }
