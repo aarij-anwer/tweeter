@@ -34,7 +34,7 @@ main {
   align-self: center;
 }
 
-article {
+main > section > article {
   display: flex;
   flex-direction: column;
   border: black;
@@ -44,19 +44,19 @@ article {
   padding: 1%;
 }
 
-article:hover {
+main > section > article:hover {
   box-shadow: 5px 10px #545149;
 }
 
-main > article > header {
+main > section > article > header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-
-main > article > header > div {
-  width: 150px;
-}
+/* 
+main > section > article > header > div {
+  width: 175px;
+} */
 
 hr {
   border: none;
