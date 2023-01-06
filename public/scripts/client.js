@@ -70,4 +70,11 @@ const renderTweets = function(tweets) {
 // renderTweets is called when the document is ready and loaded
 $(document).ready(function() {
   renderTweets(data);
+
+  $("#tweet").submit(function(event) {
+    $.post("/tweets", $(this).serialize());
+    event.preventDefault();
+    $(this).find("#tweet-text").val('');
+    $(this).find(".counter").val(140);
+  });
 });
