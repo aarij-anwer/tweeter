@@ -20,3 +20,11 @@ nav > div {
   flex-direction: column;
   align-items: center;
 }
+
+nav > div > span {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+

@@ -101,11 +101,32 @@ const postTweet = function(form, tweetText) {
   }
 };
 
+const slide = function(area, emptyOut) {
+  if (area.first().is(":hidden")) {
+    area.slideDown("slow");
+  } else {
+    area.slideUp("slow", () => {
+      area.hide();
+      if (emptyOut) {
+        area.empty();
+      }
+    });
+  }
+};
+
 $(document).ready(function() {
   //load tweets first
   loadTweets();
 
   const $form = $("#tweet");
+  const $tweetArea = $(".new-tweet");
+  const $toggle = $(".toggle");
+
+  //event handler for toggling new tweet area
+  $toggle.click(function(event) {
+    slide($tweetArea, false);
+    $tweetArea.find('#tweet-text').focus();
+  });
 
   //event handler for submitting new tweets
   $form.submit(function(event) {
@@ -113,6 +134,9 @@ $(document).ready(function() {
     const $tweetText = $(this).find('#tweet-text').val().trimStart(); //remove whitespace from the beginning
 
     const $errorDialog = $('.error');
+    // slide($errorDialog, true);
+    // postTweet($form, $tweetText);
+
     if ($errorDialog[0].innerHTML.length > 0) {
       $errorDialog.slideUp("slow", () => {
         $errorDialog.hide();
