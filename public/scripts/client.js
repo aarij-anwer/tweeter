@@ -5,7 +5,7 @@
  */
 
 // this function takes `str` representing user input and ensures its not vulnerable to XSS
-const escapeMaliciousScripts = function (str) {
+const escapeMaliciousScripts = function(str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
@@ -23,7 +23,7 @@ const createTweetElement = function(tweet) {
   `<article>
     <header>
       <div>
-        <img src="${tweet.user.avatars}">
+        <img class="avatar" src="${tweet.user.avatars}">
         <p class="name">${userName}</p>
       </div>
       <p class="handle">${userHandle}</p>
@@ -58,6 +58,11 @@ const renderTweets = function(tweets) {
 
 // `loadTweets` makes a GET request to /tweets and then calls `renderTweets` to display the data
 const loadTweets = function() {
+  //hide the error dialog
+  const $errorDialog = $('.error');
+  $errorDialog.hide();
+  $errorDialog.empty();
+
   $.get("/tweets", function(data) {
     renderTweets(data);
   });
@@ -66,18 +71,34 @@ const loadTweets = function() {
 //validate that `tweetText` is > 0 and <= 140
 const validate = function(tweetText) {
   let answer = true;
+  const $errorDialog = $('.error');
 
   if (tweetText.length === 0) {
-    alert("Nothing to tweet! Please add at least 1 character (excluding whitespace) to your tweet!");
+    $errorDialog.html("Nothing to tweet! Please add at least 1 character (excluding whitespace) to your tweet!");
+    $errorDialog.slideDown("slow");
     answer = false;
   }
-
+  
   if (tweetText.length > 140) {
-    alert("Tweet is too long! Please ensure your tweet is 140 characters or less.");
+    $errorDialog.html("Tweet is too long! Please ensure your tweet is 140 characters or less.");
+    $errorDialog.slideDown("slow");
     answer = false;
   }
-
+  
   return answer;
+};
+
+const postTweet = function(form, tweetText) {
+  //validate the tweet
+  if (validate(tweetText)) {
+  //tweet is valid, send a post request
+    $.post("/tweets", form.serialize(), (response) => {
+    //in the callback to the post request, clear the text, reset counter and reload the page
+      form.find("#tweet-text").val('');
+      form.find(".counter").val(140);
+      loadTweets();
+    });
+  }
 };
 
 $(document).ready(function() {
@@ -89,17 +110,17 @@ $(document).ready(function() {
   //event handler for submitting new tweets
   $form.submit(function(event) {
     event.preventDefault();
-    const $tweetText = $form.find('#tweet-text').val().trimStart(); //remove whitespace from the beginning
-    
-    //validate the tweet
-    if (validate($tweetText)) {
-      //tweet is valid, send a post request
-      $.post("/tweets", $form.serialize(), (response) => {
-        //in the callback to the post request, clear the text, reset counter and reload the page
-        $form.find("#tweet-text").val('');
-        $form.find(".counter").val(140);
-        loadTweets();
+    const $tweetText = $(this).find('#tweet-text').val().trimStart(); //remove whitespace from the beginning
+
+    const $errorDialog = $('.error');
+    if ($errorDialog[0].innerHTML.length > 0) {
+      $errorDialog.slideUp("slow", () => {
+        $errorDialog.hide();
+        $errorDialog.empty();
+        postTweet($form, $tweetText);
       });
+    } else {
+      postTweet($form, $tweetText);
     }
   });
 });

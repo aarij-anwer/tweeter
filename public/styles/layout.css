@@ -34,6 +34,18 @@ main {
   align-self: center;
 }
 
+.new-tweet {
+  padding-top: 30px;
+}
+
+.error {
+  color: red;
+  border-style: solid;
+  border-color: red;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 main > section > article {
   display: flex;
   flex-direction: column;
@@ -42,6 +54,10 @@ main > section > article {
   margin-top: 4%;
   margin-bottom: 4%;
   padding: 1%;
+}
+
+.avatar {
+  padding-right: 10px;
 }
 
 main > section > article:hover {
@@ -53,10 +69,6 @@ main > section > article > header {
   flex-direction: row;
   justify-content: space-between;
 }
-/* 
-main > section > article > header > div {
-  width: 175px;
-} */
 
 hr {
   border: none;
