@@ -35,9 +35,12 @@ const createTweetElement = function(tweet) {
 // calls createTweetElement for each tweet
 // takes return value and appends it to the tweets container
 const renderTweets = function(tweets) {
+  const $tweetContainer = $("#tweets-container");
+
+  $tweetContainer.empty();
   tweets.forEach(element => {
     const $tweet = createTweetElement(element);
-    $('#tweets-container').append($tweet);
+    $tweetContainer.prepend($tweet); //changed to show the earliest tweet first
   });
 };
 
@@ -48,6 +51,7 @@ const loadTweets = function() {
   });
 };
 
+//validate that `tweetText` is > 0 and <= 140
 const validate = function(tweetText) {
   let answer = true;
 
@@ -68,15 +72,22 @@ $(document).ready(function() {
   //load tweets first
   loadTweets();
 
-  //event handler for submitting new tweets
-  $("#tweet").submit(function(event) {
-    event.preventDefault();
-    const tweetText = $(this).find('#tweet-text').val().trimStart();
+  const $form = $("#tweet");
 
-    if (validate(tweetText)) {
-      $.post("/tweets", $(this).serialize());
-      $(this).find("#tweet-text").val('');
-      $(this).find(".counter").val(140);
+  //event handler for submitting new tweets
+  $form.submit(function(event) {
+    event.preventDefault();
+    const $tweetText = $form.find('#tweet-text').val().trimStart(); //remove whitespace from the beginning
+    
+    //validate the tweet
+    if (validate($tweetText)) {
+      //tweet is valid, send a post request
+      $.post("/tweets", $form.serialize(), (response) => {
+        //in the callback to the post request, clear the text, reset counter and reload the page
+        $form.find("#tweet-text").val('');
+        $form.find(".counter").val(140);
+        loadTweets();
+      });
     }
   });
 });
