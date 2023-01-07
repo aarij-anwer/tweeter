@@ -6,6 +6,7 @@
 
 // takes an object called `tweet` that represents a tweet
 const createTweetElement = function(tweet) {
+  const timeSince = timeago.format(tweet.created_at);
   const answer =
   `<article>
     <header>
@@ -18,7 +19,7 @@ const createTweetElement = function(tweet) {
     <p class="tweet">${tweet.content.text}</p>
     <span><hr /></span>
     <footer>
-      <p class="days">${tweet.created_at}</p>
+      <p class="days">${timeSince}</p>
       <div>
         <i class="fa-solid fa-flag"></i>
         <i class="fa-solid fa-retweet"></i>
