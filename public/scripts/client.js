@@ -4,19 +4,31 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// this function takes `str` representing user input and ensures its not vulnerable to XSS
+const escapeMaliciousScripts = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 // takes an object called `tweet` that represents a tweet
 const createTweetElement = function(tweet) {
   const timeSince = timeago.format(tweet.created_at);
+
+  //protection against XSS
+  const userName = escapeMaliciousScripts(tweet.user.name);
+  const userHandle = escapeMaliciousScripts(tweet.user.handle);
+  const userTweet = escapeMaliciousScripts(tweet.content.text);
   const answer =
   `<article>
     <header>
       <div>
         <img src="${tweet.user.avatars}">
-        <p class="name">${tweet.user.name}</p>
+        <p class="name">${userName}</p>
       </div>
-      <p class="handle">${tweet.user.handle}</p>
+      <p class="handle">${userHandle}</p>
     </header>
-    <p class="tweet">${tweet.content.text}</p>
+    <p class="tweet">${userTweet}</p>
     <span><hr /></span>
     <footer>
       <p class="days">${timeSince}</p>
