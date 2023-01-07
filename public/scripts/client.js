@@ -1,18 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
-// this function takes `str` representing user input and ensures its not vulnerable to XSS
-const escapeMaliciousScripts = function(str) {
-  let div = document.createElement("div");
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-};
 
 // takes an object called `tweet` that represents a tweet
+// escapeMaliciousScripts() function is in the helpers.js file
 const createTweetElement = function(tweet) {
   const timeSince = timeago.format(tweet.created_at);
 
@@ -61,9 +51,9 @@ const renderTweets = function(tweets) {
 const loadTweets = function() {
   //hide the error dialog
   const $errorDialog = $('.error');
-  $errorDialog.hide();
-  $errorDialog.empty();
-
+  clearDialog($errorDialog);
+  
+  //make GET request for tweets and pass that on to `renderTweets` to display
   $.get("/tweets", function(data) {
     renderTweets(data);
   });
@@ -102,46 +92,40 @@ const postTweet = function(form, tweetText) {
   }
 };
 
-const slide = function(area) {
-  if (area.is(":hidden")) {
-    area.slideDown("slow");
-  } else {
-    area.slideUp("slow", () => {
-      area.hide();
-    });
-  }
-};
-
+//main function where all the magic happens :)
 $(document).ready(function() {
-  //load tweets first
-  loadTweets();
-
+  //reference all the necessary DOM elements
   const $form = $("#tweet");
   const $tweetArea = $(".new-tweet");
   const $textArea = $tweetArea.find('#tweet-text');
   const $toggle = $(".toggle");
+  const $errorDialog = $('.error');
+  
+  //load tweets and focus on textarea so user can type right away
+  loadTweets();
   $textArea.focus();
   
-  //event handler for toggling new tweet area (stretch)
+  //event handler for hiding/unhiding compose tweet elements when "new" is clicked in the header (stretch)
   $toggle.click(function(event) {
-    slide($tweetArea);
+    slideDialog($tweetArea);
     $textArea.focus();
   });
   
   //event handler for submitting new tweets
   $form.submit(function(event) {
     event.preventDefault();
-    const $tweetText = $(this).find('#tweet-text').val().trimStart(); //remove whitespace from the beginning
-    
-    const $errorDialog = $('.error');
+    const $tweetText = $textArea.val().trimStart(); //remove whitespace from the beginning
     
     if ($errorDialog) {
+      //error dialog is visible due to a previous validation error
       $errorDialog.slideUp("slow", () => {
-        $errorDialog.hide();
-        $errorDialog.empty();
+        //slideUp needs to finish and then post the Tweet
+        //otherwise the UX is choppy
+        clearDialog($errorDialog);
         postTweet($form, $tweetText);
       });
     } else {
+      //no error, so post tweet
       postTweet($form, $tweetText);
     }
     //focus on textarea so user can fix tweet or type new tweet
