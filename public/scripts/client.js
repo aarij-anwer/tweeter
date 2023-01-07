@@ -74,13 +74,13 @@ const validate = function(tweetText) {
   const $errorDialog = $('.error');
 
   if (tweetText.length === 0) {
-    $errorDialog.html("Nothing to tweet! Please add at least 1 character (excluding whitespace) to your tweet!");
+    $errorDialog.html("⛔️ Nothing to tweet! Please add at least 1 character (excluding whitespace) to your tweet!");
     $errorDialog.slideDown("slow");
     answer = false;
   }
   
   if (tweetText.length > 140) {
-    $errorDialog.html("Tweet is too long! Please ensure your tweet is 140 characters or less.");
+    $errorDialog.html("⛔️ Tweet is too long! Please ensure your tweet is 140 characters or less.");
     $errorDialog.slideDown("slow");
     answer = false;
   }
