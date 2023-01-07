@@ -82,6 +82,11 @@ footer > div {
   width: 80px;
 }
 
+p {
+  word-break: break-all;
+  white-space: normal;
+}
+
 p.handle {
   font-family: 'Source Sans Pro';
   font-weight: 300;
