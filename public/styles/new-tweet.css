@@ -10,8 +10,16 @@ form {
 
 form > div {
   padding-top: 10px;
+  font-family: 'Bungee';
 }
 
+form > div > button {
+  background-color:cornflowerblue;
+}
+
+#tweet-text {
+  font-size: 80%;
+}
 
 textarea {
     background-color: #f4f1ec;

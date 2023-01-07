@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*
  * Client-side JS logic goes here
  * jQuery is already loaded
@@ -101,15 +102,12 @@ const postTweet = function(form, tweetText) {
   }
 };
 
-const slide = function(area, emptyOut) {
-  if (area.first().is(":hidden")) {
+const slide = function(area) {
+  if (area.is(":hidden")) {
     area.slideDown("slow");
   } else {
     area.slideUp("slow", () => {
       area.hide();
-      if (emptyOut) {
-        area.empty();
-      }
     });
   }
 };
@@ -124,7 +122,7 @@ $(document).ready(function() {
 
   //event handler for toggling new tweet area
   $toggle.click(function(event) {
-    slide($tweetArea, false);
+    slide($tweetArea);
     $tweetArea.find('#tweet-text').focus();
   });
 
