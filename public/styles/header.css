@@ -5,12 +5,17 @@ body > header {
   margin-bottom: 0px;
   flex-direction: column;
   background-color: aliceblue;
-  justify-content: flex-start;
   align-items: center;
   background-image: url('../images/45-degree-fabric-dark.png');
+  justify-content: center;
 }
 
-div > h2 {
+body > header > div > h2 {
   margin-top: 0px;
   margin-bottom: 0px;
+  display: flex;
+}
+
+body > header > div > h2 > div {
+  font-weight: 300;
 }

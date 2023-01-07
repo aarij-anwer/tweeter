@@ -13,18 +13,24 @@ form > div {
   font-family: 'Bungee';
 }
 
+form > textarea {
+  padding-top: 10px;
+  padding-bottom: 0px;
+  background-color: #f4f1ec;
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: black;
+  height: 36px;
+}
+
+form > label {
+  padding-top: 10px;
+}
+
 form > div > button {
   background-color:cornflowerblue;
 }
 
 #tweet-text {
   font-size: 80%;
-}
-
-textarea {
-    background-color: #f4f1ec;
-    outline: 0;
-    border-width: 0 0 2px;
-    border-color: black;
-    height: 36px;
 }

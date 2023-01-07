@@ -104,8 +104,8 @@ p {
 }
 
 p.handle {
-  font-family: 'Source Sans Pro';
   font-weight: 300;
+  color: lightsteelblue;
 }
 
 i:hover {
