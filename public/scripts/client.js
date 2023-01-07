@@ -118,24 +118,24 @@ $(document).ready(function() {
 
   const $form = $("#tweet");
   const $tweetArea = $(".new-tweet");
+  const $textArea = $tweetArea.find('#tweet-text');
   const $toggle = $(".toggle");
-
-  //event handler for toggling new tweet area
+  $textArea.focus();
+  
+  //event handler for toggling new tweet area (stretch)
   $toggle.click(function(event) {
     slide($tweetArea);
-    $tweetArea.find('#tweet-text').focus();
+    $textArea.focus();
   });
-
+  
   //event handler for submitting new tweets
   $form.submit(function(event) {
     event.preventDefault();
     const $tweetText = $(this).find('#tweet-text').val().trimStart(); //remove whitespace from the beginning
-
+    
     const $errorDialog = $('.error');
-    // slide($errorDialog, true);
-    // postTweet($form, $tweetText);
-
-    if ($errorDialog[0].innerHTML.length > 0) {
+    
+    if ($errorDialog) {
       $errorDialog.slideUp("slow", () => {
         $errorDialog.hide();
         $errorDialog.empty();
@@ -144,5 +144,8 @@ $(document).ready(function() {
     } else {
       postTweet($form, $tweetText);
     }
+    //focus on textarea so user can fix tweet or type new tweet
+    $textArea.focus();
   });
+
 });

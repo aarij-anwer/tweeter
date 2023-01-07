@@ -15,6 +15,10 @@ nav {
   bottom: 0;  
 }
 
+.header {
+  font-family: 'Bungee';
+}
+
 nav > div {
   display: flex;
   flex-direction: column;
