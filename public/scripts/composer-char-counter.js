@@ -3,7 +3,7 @@ $(document).ready(function() {
   // --- our code goes here ---
 
   $('#tweet-text').on('input', function(event) {
-    const amountTyped = $(this).val().length;
+    const amountTyped = $(this).val().trimStart().length;
     let counter = 140 - amountTyped;
 
     const form = $(this).parent();

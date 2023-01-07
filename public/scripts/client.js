@@ -41,21 +41,42 @@ const renderTweets = function(tweets) {
   });
 };
 
+// `loadTweets` makes a GET request to /tweets and then calls `renderTweets` to display the data
 const loadTweets = function() {
   $.get("/tweets", function(data) {
     renderTweets(data);
   });
 };
 
-// renderTweets is called when the document is ready and loaded
-$(document).ready(function() {
+const validate = function(tweetText) {
+  let answer = true;
 
+  if (tweetText.length === 0) {
+    alert("Nothing to tweet! Please add at least 1 character (excluding whitespace) to your tweet!");
+    answer = false;
+  }
+
+  if (tweetText.length > 140) {
+    alert("Tweet is too long! Please ensure your tweet is 140 characters or less.");
+    answer = false;
+  }
+
+  return answer;
+};
+
+$(document).ready(function() {
+  //load tweets first
   loadTweets();
 
+  //event handler for submitting new tweets
   $("#tweet").submit(function(event) {
-    $.post("/tweets", $(this).serialize());
     event.preventDefault();
-    $(this).find("#tweet-text").val('');
-    $(this).find(".counter").val(140);
+    const tweetText = $(this).find('#tweet-text').val().trimStart();
+
+    if (validate(tweetText)) {
+      $.post("/tweets", $(this).serialize());
+      $(this).find("#tweet-text").val('');
+      $(this).find(".counter").val(140);
+    }
   });
 });
