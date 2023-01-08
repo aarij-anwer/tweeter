@@ -24,90 +24,126 @@ body {
 }
 
 /*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
+* Additional CSS can be defined below or in other CSS files, as per instructions
+*/
 
-main {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  align-self: center;
+/* Hide avatar in really small screens */
+@media only screen and (min-width: 150px) and (max-width: 360px) {
+  .avatar {
+    display: none;
+  }
 }
 
-.new-tweet {
-  padding-top: 30px;
+/* Screens 360px and above, less than 1024px */
+@media only screen and (min-width: 360px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-self: center;
+  }
+
+  .new-tweet {
+    padding-top: 30px;
+  }
+
+  .error {
+    display: inline;
+    color: red;
+    border-style: solid;
+    border-color: red;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  main > section > article {
+    display: flex;
+    flex-direction: column;
+    border: black;
+    border-style: solid;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    padding: 1%;
+  }
+
+  .avatar {
+    padding-right: 10px;
+  }
+
+  main > section > article:hover {
+    box-shadow: 5px 10px #545149;
+  }
+
+  main > section > article > header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  hr {
+    border: none;
+    height: 4px;
+    background: black;
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  footer {
+    font-size: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 1%;
+    padding-left: 1%;
+  }
+
+  footer > div {
+    width: 80px;
+  }
+
+  p {
+    word-break: break-all;
+    white-space: normal;
+  }
+
+  p.handle {
+    font-weight: 300;
+    color: lightsteelblue;
+  }
+
+  i:hover {
+    color:darksalmon;
+  }
 }
 
-.error {
-  display: inline;
-  color: red;
-  border-style: solid;
-  border-color: red;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
+/* Desktop styles */
+@media only screen and (min-width: 1024px) {
+  body {
+    display: inline;
+  }
 
-main > section > article {
-  display: flex;
-  flex-direction: column;
-  border: black;
-  border-style: solid;
-  margin-top: 4%;
-  margin-bottom: 4%;
-  padding: 1%;
-}
+  main {
+    display: inline;
+    width: 60%;
+    float: right;
+    margin-top: 200px;
+    margin-right: 3vw;
+  } 
 
-.avatar {
-  padding-right: 10px;
-}
+  .new-tweet {
+    padding-top: 0;
+  }
 
-main > section > article:hover {
-  box-shadow: 5px 10px #545149;
-}
+  form > label {
+    padding-top: 0;
+  }
 
-main > section > article > header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-hr {
-  border: none;
-  height: 4px;
-  background: black;
-}
-
-div {
-  display: flex;
-  justify-content: space-between;
-}
-
-footer {
-  font-size: 70%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-right: 1%;
-  padding-left: 1%;
-}
-
-footer > div {
-  width: 80px;
-}
-
-p {
-  word-break: break-all;
-  white-space: normal;
-}
-
-p.handle {
-  font-weight: 300;
-  color: lightsteelblue;
-}
-
-i:hover {
-  color:darksalmon;
+  .error {
+    margin-top: 0;
+  }
 }

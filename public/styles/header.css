@@ -1,21 +1,31 @@
-body > header {
-  display: flex;
-  height: 400px;
-  margin-top: 120px;
-  margin-bottom: 0px;
-  flex-direction: column;
-  background-color: aliceblue;
-  align-items: center;
-  background-image: url('../images/45-degree-fabric-dark.png');
-  justify-content: center;
-}
+  body > header {
+    display: flex;
+    height: 400px;
+    margin-top: 120px;
+    margin-bottom: 0px;
+    flex-direction: column;
+    background-color: aliceblue;
+    align-items: center;
+    background-image: url('../images/45-degree-fabric-dark.png');
+    justify-content: center;
+  }
 
-body > header > div > h2 {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  display: flex;
-}
+  body > header > div > h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: flex;
+  }
 
-body > header > div > h2 > div {
-  font-weight: 300;
+  body > header > div > h2 > div {
+    font-weight: 300;
+  }
+
+/* Desktop styles */
+@media only screen and (min-width: 1024px) {
+  body > header {
+    width: 25%;
+    float: left;
+    margin-top: 200px;
+    margin-left: 3vw;
+  } 
 }
