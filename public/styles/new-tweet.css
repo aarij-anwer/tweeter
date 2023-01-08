@@ -21,6 +21,7 @@ form > textarea {
   border-width: 0 0 2px;
   border-color: black;
   height: 36px;
+  resize: none;
 }
 
 form > label {
