@@ -14,7 +14,7 @@ const createTweetElement = function(tweet) {
   `<article>
     <header>
       <div>
-        <img class="avatar" src="${tweet.user.avatars}">
+        <img alt="Avatar of tweeter" class="avatar" src="${tweet.user.avatars}">
         <p class="name">${userName}</p>
       </div>
       <p class="handle">${userHandle}</p>
