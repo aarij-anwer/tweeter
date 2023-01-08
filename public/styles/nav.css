@@ -1,34 +1,46 @@
-nav {
-  display: flex;
-  height: 120px;
-  background-color: #4056A1;
-  color: #FFFFFF;
-  padding-right: 1.5em;
-  padding-left: 1.5em;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  top: 0; 
-  left: 0;      
-  right: 0;     
-  bottom: 0;  
+/* Mobile screens */
+@media only screen and (min-width: 150px) {
+  nav {
+    display: flex;
+    height: 120px;
+    background-color: aliceblue;
+    background-image: url('../images/45-degree-fabric-dark.png');
+    color: #FFFFFF;
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0; 
+    left: 0;      
+    right: 0;     
+    bottom: 0;  
+  }
+
+  .header {
+    font-family: 'Bungee';
+  }
+
+  nav > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav > div > span {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
-.header {
-  font-family: 'Bungee';
+/* For desktop screens */
+@media only screen and (min-width: 1024px) {
+  nav {
+    background-color: #4056A1;
+    background-image: none;
+    color: #FFFFFF;
+  }
 }
-
-nav > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-nav > div > span {
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
