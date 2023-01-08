@@ -16,3 +16,28 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+- body-parser
+- chance
+- md5
+
+## Features
+
+- Dynamic views: desktop and mobile/tablet
+- Secure: no XSS hacking!
+- Thorough validation: counter turns red to indicate exceeding of character limit
+- Non-intrusive errors: errors displayed non-intrusively and smoothly when submit is clicked
+- Instant tweets: no need for refreshing the page, jQuery/AJAX got it made!
+- 🆕 Hide tweet box: for unobstructed tweet reading experience 🚨
+
+## Screenshots
+
+### Tweeter - Desktop View
+!["Desktop View"](/docs/desktop.png)
+### Tweeter - Mobile/Tablet View
+!["Mobile View"](/docs/mobile.png)
+### Client-side Validation - Clicking Submit
+!["No character error"](/docs/no_char_error.png)
+### Client-side Validation - Dynamic Counter
+!["Dynamic counter"](/docs/dynamic_counter.png)
+### Hide Tweet Box for More Reading
+!["Hide Tweet Box"](/docs/hide_tweet_textbox.png)
